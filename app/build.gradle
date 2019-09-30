@@ -214,4 +214,5 @@ dependencies {
 
     // 权限请求框架：https://github.com/getActivity/XXPermissions
     implementation 'com.hjq:xxpermissions:6.0'
+    implementation project(path: ':mylibrary')
 }

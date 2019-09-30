@@ -5,9 +5,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dream.zrdx.mylibrary.MyModel;
 import com.paper.boat.dream.R;
-import com.paper.boat.zrdx.ui.actvity_utill.SelectPositionActiviy;
 import com.paper.boat.zrdx.common.BaseFragment;
+import com.paper.boat.zrdx.ui.actvity_utill.SelectPositionActiviy;
 
 import butterknife.BindView;
 
@@ -25,7 +26,7 @@ public class TestFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void init() {
-        textView.setText( "基础包" );
+        textView.setText( "demo" );
         button.setOnClickListener( this );
     }
 
@@ -43,6 +44,7 @@ public class TestFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button:
+                MyModel.helloWorld( mContext );
                 startActivity( SelectPositionActiviy.class ).goForResult( 1001 );
                 break;
         }

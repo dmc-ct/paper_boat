@@ -35,6 +35,7 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
     BottomNavigationViewEx bnve;
     @BindView( R.id.vp )
     ViewPager vp;
+
     private VpAdapter adapter;
     // collections
     private List<Fragment> fragments;// 用于ViewPager适配器

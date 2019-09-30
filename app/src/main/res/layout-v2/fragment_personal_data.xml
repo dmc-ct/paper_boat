@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_gradient"
+        app:titleColor="@color/white"
+        app:backButton="false"
+        app:title="@string/personal_data_title" />
+
+    <FrameLayout
+        android:id="@+id/fl_person_data_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_white"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/personal_data_head"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <androidx.cardview.widget.CardView
+            style="@style/CircleCardViewStyle"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="end|center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_person_data_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_head_placeholder" />
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <com.paper.boat.zrdx.view.layout.SettingBar
+        android:id="@+id/sb_person_data_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        app:bar_leftText="@string/personal_data_id"
+        app:bar_rightText="23138" />
+
+    <com.paper.boat.zrdx.view.layout.SettingBar
+        android:id="@+id/sb_person_data_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="@string/personal_data_name"
+        app:bar_rightHint="@string/personal_data_name_hint"
+        app:bar_rightText="Android" />
+
+    <com.paper.boat.zrdx.view.layout.SettingBar
+        android:id="@+id/sb_person_data_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="@string/personal_data_address"
+        app:bar_rightHint="@string/personal_data_address_hint"
+        app:bar_rightIcon="@mipmap/ico_go_black"
+        app:bar_rightText="广东省广州市天河区" />
+
+    <com.paper.boat.zrdx.view.layout.SettingBar
+        android:id="@+id/sb_person_data_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:bar_leftText="@string/personal_data_phone"
+        app:bar_rightHint="@string/personal_data_phone_hint"
+        app:bar_rightIcon="@mipmap/ico_go_black" />
+
+    <com.paper.boat.zrdx.view.layout.SettingBar
+        android:id="@+id/sb_person_data_alms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="请吃辣条"
+        app:bar_rightIcon="@mipmap/ico_go_black" />
+
+</LinearLayout>

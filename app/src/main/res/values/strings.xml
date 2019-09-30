@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">框架V1.0</string>
+
+    <string name="no_data">无数据</string>
+    <string name="music">音乐</string>
+    <string name="backup">云端</string>
+    <string name="friends">朋友圈</string>
+    <string name="favor">收藏</string>
+    <string name="visibility">发现</string>
+
+    <string name="crash_error_details">错误详情</string>
+    <string name="crash_error_info">错误信息</string>
+    <string name="crash_copy_log">复制日志</string>
+    <string name="crash_close">关闭</string>
+    <!-- 异常捕捉 -->
+    <string name="crash_error_hint">发生意外错误\n抱歉，给您带来不便</string>
+    <string name="crash_error_restart">重新启动</string>
+    <string name="crash_error_log">错误日志</string>
+    <!-- 个人资料 -->
+    <string name="personal_data_title">个人资料</string>
+    <string name="personal_data_head">头像</string>
+    <!-- 地区对话框 -->
+    <string name="address_title">请选择地区</string>
+    <string name="address_hint">请选择</string>
+    <!-- 支付密码对话框 -->
+    <string name="pay_title">请输入支付密码</string>
+    <string name="common_confirm">确定</string>
+    <string name="common_cancel">取消</string>
+    <!-- 日期对话框 -->
+    <string name="date_title">请选择日期</string>
+    <!-- 时间对话框 -->
+    <string name="time_title">请选择时间</string>
+    <string name="common_year">年</string>
+    <string name="common_month">月</string>
+    <string name="common_day">日</string>
+    <!-- 分享对话框 -->
+    <string name="share_title">分享到&#8230;</string>
+    <!-- 升级对话框 -->
+    <string name="update_app">升级</string>
+    <string name="update_download_fail">启动下载失败</string>
+    <string name="update_permission_hint">必须先要授予权限才能正常下载更新哦</string>
+    <string name="update_status_running">下载中</string>
+    <string name="update_status_successful">立即安装</string>
+    <string name="update_status_failed">下载失败</string>
+    <string name="update_status_paused">暂停中</string>
+    <string name="update_status_pending">等待下载</string>
+    <string name="update_no_update">当前已是最新版本</string>
+    <!--时间-->
+    <string name="common_hour">时</string>
+    <string name="common_minute">分</string>
+    <string name="common_second">秒</string>
+
+    <string name="personal_data_id">用户ID</string>
+    <string name="personal_data_name">昵称</string>
+    <string name="personal_data_name_hint">设置昵称</string>
+
+    <string name="personal_data_address">地区</string>
+    <string name="personal_data_address_hint">请选择</string>
+
+    <string name="personal_data_phone">手机号码</string>
+    <string name="personal_data_phone_hint">立即绑定</string>
+
+    <string name="common_loading">加载中&#8230;</string>
+</resources>

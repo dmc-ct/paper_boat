@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00A8FF</color>
+    <color name="colorPrimaryDark">#00A8FF</color>
+    <color name="colorAccent">#00A8FF</color>
+
+    <!-- 按钮按压时的颜色 -->
+    <color name="colorButtonPressed">#1976D2</color>
+    <!-- 按钮禁用时的颜色 -->
+    <color name="colorButtonDisable">#BBBBBB</color>
+    <!-- 分割线的颜色 -->
+    <color name="colorLine">#ECECEC</color>
+    <!-- 对话框确认按钮文本颜色 -->
+    <color name="colorConfirm">#007AFF</color>
+    <!-- 对话框取消按钮文本颜色 -->
+    <color name="colorCancel">#F44336</color>
+    <color name="black5">#0D000000</color>
+
+    <color name="color_f6">#f6f6f6</color>
+    <color name="colorGreen">#ff669900</color>
+    <color name="colorGray">#ccc</color>
+    <color name="black_transparent">#80000000</color>
+    <color name="white">#ffffff</color>
+    <color name="blue">#0FADFF</color>
+    <color name="home_1">#A3E338</color>
+    <color name="home_2">#2DDFB4</color>
+    <color name="home_3">#F5CF3E</color>
+    <color name="home_4">#00A8FF</color>
+    <color name="home_5">#DF5289</color>
+    <color name="home_6">#F0F0F0</color>
+    <color name="home_7">#D1D0D3</color>
+    <color name="home_8">#FAFAFA</color>
+    <color name="home_9">#80919191</color>
+    <color name="text_no">#999999</color>
+    <color name="text_one">#E5E5E5</color>
+    <color name="police_1">#D8D8D8</color>
+    <color name="police_2">#FBFBFB</color>
+    <color name="red">#fa3030</color>
+    <color name="defaultTextBlackColor">#4c4e4f</color>
+    <!-- 薄荷色 -->
+    <color name="whitesmoke">#f5f5f5</color>
+    <color name="csy_blue">#ff0a7dd2</color>
+    <!--白色-->
+    <color name="white95">#F2FFFFFF</color>
+    <color name="white90">#E6FFFFFF</color>
+    <color name="white85">#D9FFFFFF</color>
+    <color name="white80">#CCFFFFFF</color>
+    <color name="white75">#BFFFFFFF</color>
+    <color name="white70">#B3FFFFFF</color>
+    <color name="white65">#A6FFFFFF</color>
+    <color name="white60">#99FFFFFF</color>
+    <color name="white55">#8CFFFFFF</color>
+    <color name="white50">#80FFFFFF</color>
+    <color name="white45">#73FFFFFF</color>
+    <color name="white40">#66FFFFFF</color>
+    <color name="white35">#59FFFFFF</color>
+    <color name="white30">#4DFFFFFF</color>
+    <color name="white25">#40FFFFFF</color>
+    <color name="white20">#33FFFFFF</color>
+    <color name="white15">#26FFFFFF</color>
+    <color name="white10">#1AFFFFFF</color>
+    <color name="white5">#0DFFFFFF</color>
+    <!-- 黑色 -->
+    <color name="black">#FF000000</color>
+    <color name="black95">#F2000000</color>
+    <color name="black90">#E6000000</color>
+    <color name="black85">#D9000000</color>
+    <color name="black80">#CC000000</color>
+    <color name="black75">#B000000F</color>
+    <color name="black70">#B3000000</color>
+    <color name="black65">#A6000000</color>
+    <color name="black60">#99000000</color>
+    <color name="black55">#8C000000</color>
+    <color name="black50">#80000000</color>
+    <color name="black45">#73000000</color>
+    <color name="black40">#66000000</color>
+    <color name="black35">#59000000</color>
+    <color name="black30">#4D000000</color>
+    <color name="black25">#40000000</color>
+    <color name="black20">#33000000</color>
+    <color name="black15">#26000000</color>
+    <color name="black10">#1A000000</color>
+
+</resources>

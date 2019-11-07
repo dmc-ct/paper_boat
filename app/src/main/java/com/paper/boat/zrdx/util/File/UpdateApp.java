@@ -7,9 +7,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
-import androidx.core.content.FileProvider;
-import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.FileProvider;
 
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadListener;
@@ -28,7 +29,8 @@ import java.text.DecimalFormat;
 
 import retrofit2.Response;
 
-import static com.paper.boat.zrdx.util.File.MyShared.APK_FILE_PATH;
+import static com.paper.boat.zrdx.util.File.IntentKey.APK_FILE_PATH;
+import static com.paper.boat.zrdx.util.File.IntentKey.INSTALL_PERMISS_CODE;
 
 
 public class UpdateApp {
@@ -196,7 +198,7 @@ public class UpdateApp {
                 builder.setPositiveButton( "确定", (dialog, which) -> {
                     Uri packageURI = Uri.parse( "package:" + mContext.getPackageName() );
                     Intent intent = new Intent( Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI );
-                    activity.startActivityForResult( intent, MyShared.INSTALL_PERMISS_CODE );
+                    activity.startActivityForResult( intent, INSTALL_PERMISS_CODE );
 //                    mContext.sendBroadcast( intent );
                     dialog.dismiss();
                 } );

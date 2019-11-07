@@ -40,6 +40,7 @@ public final class ToastDialog {
             addOnShowListener(this);
         }
 
+
         public Builder setType(Type type) {
             mType = type;
             switch (type) {

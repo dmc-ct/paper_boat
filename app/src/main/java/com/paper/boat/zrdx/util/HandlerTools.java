@@ -7,15 +7,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.andview.refreshview.XRefreshView;
 import com.paper.boat.dream.R;
 import com.paper.boat.zrdx.InitApp;
 import com.paper.boat.zrdx.util.interfaces.XRefresh;
-import com.paper.boat.zrdx.view.ScreenUtil;
-import com.stx.xhb.xbanner.XBanner;
-import com.stx.xhb.xbanner.entity.LocalImageInfo;
+import com.paper.boat.zrdx.view.util.ScreenUtil;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
+import com.stx.xhb.androidx.XBanner;
+import com.stx.xhb.androidx.entity.LocalImageInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,31 +43,6 @@ public class HandlerTools {
     }
 
     /**
-     * 初始化XRefreshView
-     */
-    public static void XRefreshView(XRefreshView xRefreshView) {
-        xRefreshView.setPullLoadEnable( true );
-        xRefreshView.setPullRefreshEnable( true ); //下拉
-        xRefreshView.setPinnedContent( false ); //列表不滚动
-        xRefreshView.setAutoLoadMore( false ); //自动加载
-        //设置刷新完成以后，headerview固定的时间
-        xRefreshView.setPinnedTime( 200 );
-        // 设置上次刷新的时间
-        xRefreshView.restoreLastRefreshTime( HandlerTools.lastRefreshTime );
-        //设置加载完成
-//        xRefreshView.setLoadComplete(true);
-    }
-
-    /**
-     * 刷新暂停
-     */
-    public static void RefreshUI(XRefreshView xRefreshView) {
-        HandlerTools.lastRefreshTime = xRefreshView.getLastRefreshTime();
-        xRefreshView.stopLoadMore();
-        xRefreshView.stopRefresh();
-    }
-
-    /**
      * 标题全局初始化
      */
     public static void title(Activity activity, View view, String string) {
@@ -81,70 +58,56 @@ public class HandlerTools {
     public static void initLocalImage(XBanner mBanner) {
         // 初始化XBanner中展示的数据
         List <LocalImageInfo> data = new ArrayList <>();
-//        data.add( new LocalImageInfo( R.mipmap.demo ) );
-//        data.add( new LocalImageInfo( R.mipmap.demo_two ) );
-//        data.add( new LocalImageInfo( R.mipmap.demo_three ) );
-//        data.add( new LocalImageInfo( R.mipmap.demo_four ) );
+        data.add( new LocalImageInfo( R.mipmap.demo ) );
+        data.add( new LocalImageInfo( R.mipmap.demo_two ) );
+        data.add( new LocalImageInfo( R.mipmap.demo_three ) );
+        data.add( new LocalImageInfo( R.mipmap.demo_four ) );
         mBanner.setBannerData( data );
         //设置自动播放功能
         mBanner.setAutoPlayAble( true );
     }
 
+
     /**
      * 上拉下拉刷新
      *
-     * @param pull_up      是否支持下拉
-     * @param xRefreshView 当前刷新对象
-     * @param XRefresh     实现刷新接口
+     * @param pull_up       是否支持下拉
+     * @param refreshLayout 当前刷新对象
+     * @param XRefresh      实现刷新接口
      */
-    public static void Refresh(Boolean pull_up, XRefreshView xRefreshView, final XRefresh XRefresh) {
-        xRefreshView.setPullLoadEnable( pull_up ); //上拉
-        xRefreshView.setPullRefreshEnable( true ); //下拉
-        xRefreshView.setPinnedContent( false ); //列表不滚动
-        xRefreshView.setAutoLoadMore( false ); //自动加载
-        //设置刷新完成以后，headerview固定的时间
-        xRefreshView.setPinnedTime( 200 );
-        // 设置上次刷新的时间
-        xRefreshView.restoreLastRefreshTime( HandlerTools.lastRefreshTime );
-        xRefreshView.setXRefreshViewListener( new XRefreshView.XRefreshViewListener() {
+    public static void Refresh(Boolean pull_up, RefreshLayout refreshLayout, final XRefresh XRefresh) {
+        /*下拉刷新*/
+        refreshLayout.setEnableLoadMore( pull_up );
+        refreshLayout.setOnMultiPurposeListener( new SimpleMultiPurposeListener() {
+            /*下拉*/
             @Override
-            public void onRefresh() {  //下拉回调
-                InitApp.getHandler().postDelayed( new Runnable() {
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+//                refreshLayout.finishRefresh( 500 );
+                refreshLayout.getLayout().post( new Runnable() {
                     @Override
                     public void run() {
-                        RefreshUI( xRefreshView );
+                        refreshLayout.finishRefresh();/*完成刷新*/
+                        refreshLayout.resetNoMoreData(); /*重置(恢复)无更多数据*/
                         XRefresh.onRefresh();
                     }
-                }, 500 );
+                } );
             }
 
-            //下拉回调
+            /*上拉*/
             @Override
-            public void onRefresh(boolean isPullDown) {
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+//                refreshLayout.finishRefresh(); /*完成刷新*/
+//                refreshLayout.resetNoMoreData(); /*重置无更多数据*/
+//                refreshLayout.finishLoadMoreWithNoMoreData();//将不会再次触发加载更多事件
+//                refreshLayout.finishLoadMore( 500 );
 
-            }
-
-            @Override
-            public void onLoadMore(boolean isSilence) {  //上拉回调
-                InitApp.getHandler().postDelayed( new Runnable() {
+                refreshLayout.getLayout().post( new Runnable() {
                     @Override
                     public void run() {
-                        RefreshUI( xRefreshView );
-                        XRefresh.onLoadMore( isSilence );
+                        refreshLayout.finishLoadMore(); /*完成刷新*/
+                        XRefresh.onLoadMore();
                     }
-                }, 500 );
-            }
-
-            //释放
-            @Override
-            public void onRelease(float direction) {
-
-            }
-
-            //移动
-            @Override
-            public void onHeaderMove(double headerMovePercent, int offsetY) {
-
+                } );
             }
         } );
     }

@@ -49,6 +49,7 @@ public final class UpdateDialog {
         private TextView mUpdateView;
         private ViewGroup mCancelLayout;
         private View mCloseView;
+        public String versionNumber;
 
         /** 下载地址 */
         private String mDownloadUrl;
@@ -216,7 +217,7 @@ public final class UpdateDialog {
         }
 
         /**
-         * {@link OnPermission}
+         * {@link OnPermission} 有权限
          */
         @Override
         public void hasPermission(List<String> granted, boolean isAll) {

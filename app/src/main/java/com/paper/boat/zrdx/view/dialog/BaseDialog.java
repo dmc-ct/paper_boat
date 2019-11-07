@@ -807,7 +807,7 @@ public class BaseDialog extends AppCompatDialog implements
 
             // 判断布局是否为空
             if (mContentView == null) {
-                throw new IllegalArgumentException("Dialog layout cannot be empty");
+                throw new IllegalArgumentException("Dialog layout-v2 cannot be empty");
             }
 
             // 如果当前没有设置重心，就设置一个默认的重心

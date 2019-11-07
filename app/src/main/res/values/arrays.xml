@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--   https://hm.baidu.com -->
+
+    <!--广告库-->
+    <string-array name="adBlockUrl">
+        <item>ubmcmm.baidustatic.com</item>
+        <item>fjqz50cv5q3so.online</item>
+        <item>mtsr39cnql.video</item>
+        <item>tz.smfsjx.com</item>
+        <item>vqzone.gtimg.com</item>
+        <item>cbu01.alicdn.com</item>
+    </string-array>
+
+    <!--民族-->
+    <string-array name="mz">
+        <item>汉</item>
+        <item>壮</item>
+        <item>满</item>
+        <item>回</item>
+        <item>苗</item>
+        <item>维吾尔</item>
+        <item>土家</item>
+        <item>彝</item>
+        <item>蒙古</item>
+        <item>藏</item>
+        <item>布依</item>
+        <item>侗</item>
+        <item>瑶</item>
+        <item>朝鲜</item>
+        <item>白</item>
+        <item>哈尼</item>
+        <item>哈萨克</item>
+        <item>黎</item>
+        <item>傣</item>
+        <item>畲</item>
+        <item>傈僳</item>
+        <item>仡佬</item>
+        <item>东乡</item>
+        <item>高山</item>
+        <item>拉祜</item>
+        <item>水</item>
+        <item>佤</item>
+        <item>纳西</item>
+        <item>羌</item>
+        <item>土</item>
+        <item>仫佬</item>
+        <item>锡伯</item>
+        <item>柯尔克孜</item>
+        <item>达斡尔</item>
+        <item>景颇</item>
+        <item>毛南</item>
+        <item>撒拉</item>
+        <item>布朗</item>
+        <item>塔吉克</item>
+        <item>阿昌</item>
+        <item>普米</item>
+        <item>鄂温克</item>
+        <item>怒</item>
+        <item>京</item>
+        <item>基诺</item>
+        <item>德昂</item>
+        <item>保安</item>
+        <item>俄罗斯</item>
+        <item>裕固</item>
+        <item>乌孜别克</item>
+        <item>门巴</item>
+        <item>鄂伦春</item>
+        <item>独龙</item>
+        <item>塔塔尔</item>
+        <item>赫哲</item>
+        <item>珞巴</item>
+        <item>革家人</item>
+        <item>穿青</item>
+        <item>其他</item>
+    </string-array>
+
+</resources>

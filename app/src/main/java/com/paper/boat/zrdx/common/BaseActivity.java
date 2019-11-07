@@ -1,194 +1,60 @@
 package com.paper.boat.zrdx.common;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.gyf.immersionbar.ImmersionBar;
-import com.hjq.bar.OnTitleBarListener;
-import com.hjq.bar.TitleBar;
-import com.liulishuo.filedownloader.FileDownloader;
-import com.paper.boat.dream.R;
-import com.paper.boat.zrdx.InitApp;
 import com.paper.boat.zrdx.annotation.AutoArg;
 import com.paper.boat.zrdx.util.base.GsonUtils;
-import com.paper.boat.zrdx.util.base.MyToast;
-import com.paper.boat.zrdx.util.interfaces.OnLeft;
-import com.paper.boat.zrdx.util.interfaces.OnRight;
-import com.paper.boat.zrdx.util.interfaces.OnTitle;
-import com.paper.boat.zrdx.view.dialog.StateNoticeDialog;
-import com.zl.weilu.saber.api.Saber;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Random;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import me.yokeyword.fragmentation.SupportActivity;
-
-public abstract class BaseActivity extends SupportActivity {
-    private static final String TAG = "BaseActivity";
-    private Unbinder unbind;
-    private Bundle mBundle = new Bundle();
-    private Intent mIntent;
-    /* 状态栏沉浸*/
-    protected ImmersionBar mImmersionBar;
-    /* 标题栏对象*/
-    private TitleBar mTitleBar;
-    private StateNoticeDialog.Builder mDialog;
+/**
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/AndroidProject
+ * time   : 2018/10/18
+ * desc   : Activity 基类
+ */
+public abstract class BaseActivity extends AppCompatActivity {
+    private static final Handler HANDLER = new Handler( Looper.getMainLooper() );
+    public final Object mHandlerToken = hashCode();
+    private Bundle mBundle = new Bundle();  /*跳转意图*/
+    private Intent mIntent; /*跳转*/
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        /*初始化布局*/
+        initActivity();
+    }
+
+    protected void initActivity() {
         initLayout();
-        unbind = ButterKnife.bind( this );
-        InitApp.getInstance().addActivity( this );
-        Saber.bind( this ); // <--这里绑定ViewModel
-        /*Dialog*/
-        mDialog = new StateNoticeDialog.Builder( getBaseContext() );
-        /*状态栏初始化*/
-        ImmersionBar.with( this ).init();
-        /* 仅仅是缓存Application的Context，不耗时*/
-        FileDownloader.init( getBaseContext() );
-        //文件下载初始化
-        FileDownloader.setup( getBaseContext() );
-        //初始化页面
         initView();
-        //初始化数据
         initData();
-        /*状态栏*/
-        initImmersion();
     }
 
-    private void initLayout() {
-        if (getLayout() > 0) {
-            setContentView( getLayout() );
+    /**
+     * 初始化布局
+     */
+    protected void initLayout() {
+        if (getLayoutId() > 0) {
+            setContentView( getLayoutId() );
             initSoftKeyboard();
-            mTitleBar = findViewById( R.id.title );
-            leftBar( this::finish );
         }
-    }
-
-    public void dialog(String string) {
-        mDialog.showNotice( string, 3, false, 0 );
-    }
-
-    public void onDismiss() {
-        mDialog.onDismiss();
-    }
-
-    /**
-     * 是否使用沉浸式状态栏
-     */
-    public boolean isStatusBarEnabled() {
-        return true;
-    }
-
-    public void titleBar(OnTitle onTitle) {
-        if (mTitleBar != null) {
-            /*标题栏监听*/
-            mTitleBar.setOnTitleBarListener( new OnTitleBarListener() {
-                @Override
-                public void onLeftClick(View v) {
-                    onTitle.Left();
-                }
-                @Override
-                public void onTitleClick(View v) {
-                    onTitle.Title();
-                }
-                @Override
-                public void onRightClick(View v) {
-                    onTitle.Right();
-                }
-            } );
-        }
-    }
-
-    public void leftBar(OnLeft onLeft) {
-        if (mTitleBar != null) {
-            /*标题栏监听*/
-            mTitleBar.setOnTitleBarListener( new OnTitleBarListener() {
-                @Override
-                public void onLeftClick(View v) {
-                    onLeft.Left();
-                }
-                @Override
-                public void onTitleClick(View v) {
-
-                }
-                @Override
-                public void onRightClick(View v) {
-
-                }
-            } );
-        }
-    }
-
-    public void rightBar(OnRight onRight) {
-        if (mTitleBar != null) {
-            /*标题栏监听*/
-            mTitleBar.setOnTitleBarListener( new OnTitleBarListener() {
-                @Override
-                public void onLeftClick(View v) {
-                }
-                @Override
-                public void onTitleClick(View v) {
-                }
-                @Override
-                public void onRightClick(View v) {
-                    onRight.Right();
-                }
-            } );
-        }
-    }
-
-    /* 初始化沉浸式*/
-    protected void initImmersion() {
-        // 初始化沉浸式状态栏
-        if (isStatusBarEnabled()) {
-            statusBarConfig().init();
-            ImmersionBar.with(this)
-                    .statusBarDarkFont(true) /*状态栏深色字体*/
-                    .navigationBarDarkIcon(true) /*导航栏深色图标*/
-                    .init();
-            // 设置标题栏沉浸
-//            if (getLayout() > 0) {
-//                ImmersionBar.setTitleBar( this, getWindow().getDecorView(), null  );
-//            }
-            if (mTitleBar != null) {
-                ImmersionBar.setTitleBar( this, mTitleBar );
-            }
-        }
-    }
-
-    /**
-     * 初始化沉浸式状态栏
-     */
-    protected ImmersionBar statusBarConfig() {
-        // 在BaseActivity里初始化
-        mImmersionBar = ImmersionBar.with( this )
-                // 默认状态栏字体颜色为黑色
-                .statusBarDarkFont( true );
-        return mImmersionBar;
-    }
-
-    /*true黑色false白色*/
-    public void TitleColor(Boolean bool){
-        InitApp.getHandler().post( new Runnable() {
-            @Override
-            public void run() {
-                mImmersionBar.statusBarDarkFont(bool).init();
-            }
-        } );
     }
 
     /**
@@ -205,28 +71,19 @@ public abstract class BaseActivity extends SupportActivity {
     }
 
     /**
-     * 和 setContentView 对应的方法
+     * 获取布局 ID
      */
-    public ViewGroup getContentView() {
-        return findViewById( Window.ID_ANDROID_CONTENT );
-    }
+    protected abstract int getLayoutId();
 
     /**
-     * 显示吐司
+     * 初始化控件
      */
-    public void Toast(String text) {
-        MyToast.showToast( text );
-    }
+    protected abstract void initView();
 
     /**
-     * 初始化布局
+     * 初始化数据
      */
-    public abstract void initView();
-
-    /**
-     * 设置数据
-     */
-    public abstract void initData();
+    protected abstract void initData();
 
     @Override
     public void finish() {
@@ -235,82 +92,67 @@ public abstract class BaseActivity extends SupportActivity {
     }
 
     /**
-     * 隐藏软键盘
+     * 延迟执行
      */
-    private void hideSoftKeyboard() {
-        // 隐藏软键盘，避免软键盘引发的内存泄露
-        View view = getCurrentFocus();
-        if (view != null) {
-            InputMethodManager manager = (InputMethodManager) getSystemService( Context.INPUT_METHOD_SERVICE );
-            if (manager != null) {
-                manager.hideSoftInputFromWindow( view.getWindowToken(), 0 );
-            }
-        }
+    public final boolean post(Runnable r) {
+        return postDelayed( r, 0 );
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    /**
+     * 延迟一段时间执行
+     */
+    public final boolean postDelayed(Runnable r, long delayMillis) {
+        if (delayMillis < 0) {
+            delayMillis = 0;
+        }
+        return postAtTime( r, SystemClock.uptimeMillis() + delayMillis );
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressedSupport();
-        }
-        return super.onOptionsItemSelected( item );
-    }
-
-    @Override
-    public void onBackPressedSupport() {
-        //fragment逐个退出
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count == 0) {
-            super.onBackPressedSupport();
-        } else {
-            getSupportFragmentManager().popBackStack();
-        }
+    /**
+     * 在指定的时间执行
+     */
+    public final boolean postAtTime(Runnable r, long uptimeMillis) {
+        // 发送和这个 Activity 相关的消息回调
+        return HANDLER.postAtTime( r, mHandlerToken, uptimeMillis );
     }
 
     @Override
     protected void onDestroy() {
+        // 移除和这个 Activity 相关的消息回调
+        HANDLER.removeCallbacksAndMessages( mHandlerToken );
         super.onDestroy();
-        InitApp.getInstance().removeActivity( this );
-        unbind.unbind();
     }
 
-    //离开
+    /**
+     * 如果当前的 Activity（singleTop 启动模式） 被复用时会回调
+     */
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent( intent );
+        // 设置为当前的 Intent，避免 Activity 被杀死后重启 Intent 还是最原先的那个
+        setIntent( intent );
     }
 
-    protected abstract int getLayout();
-
-    public BaseActivity startActivity(Class activity) {
-        mIntent = new Intent( this, activity );
+    /**
+     * 获取当前 Activity 对象
+     */
+    public BaseActivity getActivity() {
         return this;
     }
 
-    public void go() {
-        if (mIntent != null) {
-            mIntent.putExtras( mBundle );
-            startActivity( mIntent );
-        }
+    /**
+     * 和 setContentView 对应的方法
+     */
+    public ViewGroup getContentView() {
+        return findViewById( Window.ID_ANDROID_CONTENT );
     }
 
-    public void goForResult(int requestCode) {
-        if (mIntent != null) {
-            mIntent.putExtras( mBundle );
-            startActivityForResult( mIntent, requestCode );
-        }
-    }
-
-    public void goSetResult(int resultCode) {
-        mIntent = new Intent();
-        mIntent.putExtras( mBundle );
-        setResult( resultCode, mIntent );
-        finish();
+    /**
+     * startActivity 方法优化
+     */
+    public BaseActivity startActivity(Class cls) {
+        mIntent  = new Intent( this, cls );
+        return this;
     }
 
     public BaseActivity withObject(@Nullable String key, @Nullable Object value) {
@@ -352,6 +194,147 @@ public abstract class BaseActivity extends SupportActivity {
     public BaseActivity withStringArrayList(@Nullable String key, @Nullable ArrayList <String> value) {
         mBundle.putStringArrayList( key, value );
         return this;
+    }
+
+    public void goForResult(int requestCode) {
+        if (mIntent != null) {
+            mIntent.putExtras( mBundle );
+            startActivityForResult( mIntent, requestCode );
+        }
+    }
+
+    public void goSetResult(int resultCode) {
+        mIntent = new Intent();
+        mIntent.putExtras( mBundle );
+        setResult( resultCode, mIntent );
+        finish();
+    }
+
+    public void go() {
+        if (mIntent != null) {
+            mIntent.putExtras( mBundle );
+            startActivity( mIntent );
+        }
+    }
+
+    public void startActivityFinish(Class cls) {
+        startActivityFinish( new Intent( this, cls ) );
+    }
+
+    public void startActivityFinish(Intent intent) {
+        startActivity( intent );
+        finish();
+    }
+
+    /**
+     * startActivityForResult 方法优化
+     */
+
+    private ActivityCallback mActivityCallback;
+    private int mActivityRequestCode;
+
+    public void startActivityForResult(Class <? extends Activity> cls, ActivityCallback callback) {
+        startActivityForResult( new Intent( this, cls ), null, callback );
+    }
+
+    public void startActivityForResult(Intent intent, ActivityCallback callback) {
+        startActivityForResult( intent, null, callback );
+    }
+
+    public void startActivityForResult(Intent intent, @Nullable Bundle options, ActivityCallback callback) {
+        // 回调还没有结束，所以不能再次调用此方法，这个方法只适合一对一回调，其他需求请使用原生的方法实现
+        if (mActivityCallback == null) {
+            mActivityCallback = callback;
+            // 随机生成请求码，这个请求码在 0 - 255 之间
+            mActivityRequestCode = new Random().nextInt( 255 );
+            startActivityForResult( intent, mActivityRequestCode, options );
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (mActivityCallback != null && mActivityRequestCode == requestCode) {
+            mActivityCallback.onActivityResult( resultCode, data );
+            mActivityCallback = null;
+        } else {
+            super.onActivityResult( requestCode, resultCode, data );
+        }
+    }
+
+    /**
+     * 处理 Activity 多重跳转：https://www.jianshu.com/p/579f1f118161
+     */
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+        if (startActivitySelfCheck( intent )) {
+            hideSoftKeyboard();
+            // 查看源码得知 startActivity 最终也会调用 startActivityForResult
+            super.startActivityForResult( intent, requestCode, options );
+        }
+    }
+
+    private String mStartActivityTag;
+    private long mStartActivityTime;
+
+    /**
+     * 检查当前 Activity 是否重复跳转了，不需要检查则重写此方法并返回 true 即可
+     *
+     * @param intent 用于跳转的 Intent 对象
+     * @return 检查通过返回true, 检查不通过返回false
+     */
+    protected boolean startActivitySelfCheck(Intent intent) {
+        // 默认检查通过
+        boolean result = true;
+        // 标记对象
+        String tag;
+        if (intent.getComponent() != null) {
+            // 显式跳转
+            tag = intent.getComponent().getClassName();
+        } else if (intent.getAction() != null) {
+            // 隐式跳转
+            tag = intent.getAction();
+        } else {
+            // 其他方式
+            return true;
+        }
+
+        if (tag.equals( mStartActivityTag ) && mStartActivityTime >= SystemClock.uptimeMillis() - 500) {
+            // 检查不通过
+            result = false;
+        }
+
+        // 记录启动标记和时间
+        mStartActivityTag = tag;
+        mStartActivityTime = SystemClock.uptimeMillis();
+        return result;
+    }
+
+    /**
+     * 隐藏软键盘
+     */
+    private void hideSoftKeyboard() {
+        // 隐藏软键盘，避免软键盘引发的内存泄露
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager manager = (InputMethodManager) getSystemService( Context.INPUT_METHOD_SERVICE );
+            if (manager != null) {
+                manager.hideSoftInputFromWindow( view.getWindowToken(), 0 );
+            }
+        }
+    }
+
+    /**
+     * Activity 回调接口
+     */
+    public interface ActivityCallback {
+
+        /**
+         * 结果回调
+         *
+         * @param resultCode 结果码
+         * @param data       数据
+         */
+        void onActivityResult(int resultCode, @Nullable Intent data);
     }
 
     /**

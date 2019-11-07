@@ -14,6 +14,13 @@ import retrofit2.http.Query;
 /*接口定义*/
 public interface BlogService {
 
+    /*
+    * https://docs.open.alipay.com/?
+    * app_id=2019092767868374&
+    * source=alipay_app_auth&
+    * app_auth_code=50a51c79cd4b4783b8e62b2ead968A40
+    * */
+
     /**
      * app更新
      * @param version_no 版本号
@@ -33,5 +40,21 @@ public interface BlogService {
     Call <Result <FilesUploads>> uploadFile(
             @Header("Authorization") String string,
             @Part MultipartBody.Part file);
+
+    @POST("talipay.ebpp.bill.get")
+    Call <Result <AppUpdate>> get(
+            @Query("app_id") String app_id
+            ,@Query("method") String method
+            ,@Query("charset") String charset
+            ,@Query("sign_type") String sign_type
+            ,@Query("sign") String sign
+            ,@Query("timestamp") String timestamp
+            ,@Query("version") String version
+            ,@Query("auth_token") String auth_token);
+
+    @POST("appToAppAuth.htm")
+    Call <Result <AppUpdate>> appToAppAuth(
+            @Query("app_id") String app_id
+            , @Query("redirect_uri") String redirect_uri);
 
 }

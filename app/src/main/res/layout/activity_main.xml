@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.paper.boat.zrdx.MainActivity">
 
-    <com.paper.boat.zrdx.view.BottomNavigationViewEx
+    <com.paper.boat.zrdx.view.button.BottomNavigationViewEx
         android:id="@+id/bnve"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

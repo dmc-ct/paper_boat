@@ -50,7 +50,7 @@
             app:title="选择位置" />
 
 
-<!--        <include layout="@layout/custom_titlebar" />-->
+<!--        <include layout-v2="@layout-v2/custom_titlebar" />-->
 
     </RelativeLayout>
 </layout>

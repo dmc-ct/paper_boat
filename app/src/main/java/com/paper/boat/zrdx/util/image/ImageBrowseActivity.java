@@ -16,7 +16,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.gyf.immersionbar.BarHide;
 import com.jaeger.library.StatusBarUtil;
 import com.paper.boat.dream.R;
-import com.paper.boat.zrdx.common.BaseActivity;
+import com.paper.boat.zrdx.common.MyActivity;
 import com.paper.boat.zrdx.util.base.MyToast;
 import com.paper.boat.zrdx.util.webview.FileUtils;
 
@@ -29,7 +29,7 @@ import me.relex.circleindicator.CircleIndicator;
  * Created by Kevin on 2017/8/29.
  */
 /*图片预览*/
-public class ImageBrowseActivity extends BaseActivity {
+public class ImageBrowseActivity extends MyActivity {
     private ViewPager viewPager;
     private List <View> views;
     private RelativeLayout container;
@@ -44,7 +44,7 @@ public class ImageBrowseActivity extends BaseActivity {
     public void initView() {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        getSupportActionBar().hide();
-//        setContentView( R.layout.activity_image_browse);
+//        setContentView( R.layout-v2.activity_image_browse);
 
         // 设置状态栏和导航栏参数
         statusBarConfig()
@@ -59,8 +59,6 @@ public class ImageBrowseActivity extends BaseActivity {
         StatusBarUtil.setColor( this, Color.BLACK, 0 );
         container = findViewById( R.id.container );
         initDatas();
-
-        leftBar( this::finish );
     }
 
     private void savePhotoToLocal(Bitmap bitmap) {
@@ -80,6 +78,11 @@ public class ImageBrowseActivity extends BaseActivity {
     @Override
     public void initData() {
 
+    }
+
+    @Override
+    public void onRightClick(View v) {
+        ((BitmapDrawable) photo_view.getDrawable()).getBitmap();
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -106,7 +109,6 @@ public class ImageBrowseActivity extends BaseActivity {
                 }
                 indicator.setVisibility( View.VISIBLE );
                 position = bundle.getInt( ImageBrowseIntent.PARAM_POSITION );
-                rightBar( () -> savePhotoToLocal( ((BitmapDrawable) photo_view.getDrawable()).getBitmap() ) );
                 break;
             case 1://Url单
                 View urlView = LayoutInflater.from( this ).inflate( R.layout.adapter_image, null );
@@ -114,7 +116,6 @@ public class ImageBrowseActivity extends BaseActivity {
                 GlideHelper.load( this, bundle.get( ImageBrowseIntent.PARAM_URL_SINGLE ), url_photo_view, true );
                 views.add( urlView );
                 indicator.setVisibility( View.GONE );
-                rightBar( () -> savePhotoToLocal( ((BitmapDrawable) photo_view.getDrawable()).getBitmap() ) );
                 break;
             case 2://本地资源组
                 ArrayList <Integer> imageResIds = bundle.getIntegerArrayList( ImageBrowseIntent.PARAM_RES_ID_GROUP );
@@ -127,7 +128,6 @@ public class ImageBrowseActivity extends BaseActivity {
                 }
                 indicator.setVisibility( View.VISIBLE );
                 position = bundle.getInt( ImageBrowseIntent.PARAM_POSITION );
-                rightBar( () -> savePhotoToLocal( ((BitmapDrawable) photo_view.getDrawable()).getBitmap() ) );
                 break;
             case 3://本地资源单
                 View resIdView = LayoutInflater.from( this ).inflate( R.layout.adapter_image, null );
@@ -135,7 +135,6 @@ public class ImageBrowseActivity extends BaseActivity {
                 GlideHelper.load( this, bundle.get( ImageBrowseIntent.PARAM_RES_ID_SINGLE ), res_id_photo_view, true );
                 views.add( resIdView );
                 indicator.setVisibility( View.GONE );
-                rightBar( () -> savePhotoToLocal( ((BitmapDrawable) photo_view.getDrawable()).getBitmap() ) );
                 break;
             default:
                 break;
@@ -151,12 +150,10 @@ public class ImageBrowseActivity extends BaseActivity {
                 return viewPager.dispatchTouchEvent( event );
             }
         } );
-
-
     }
 
     @Override
-    protected int getLayout() {
+    protected int getLayoutId() {
         return R.layout.activity_image_browse;
     }
 }

@@ -9,8 +9,8 @@
             <!--梯度-->
             <gradient
                 android:angle="180"
-                android:endColor="#387cfd"
-                android:startColor="#26c4fd"
+                android:endColor="@color/home_9"
+                android:startColor="@color/home_9"
                 android:type="linear" />
 <!--            <solid android:color="@color/colorButtonDisable" />-->
         </shape>

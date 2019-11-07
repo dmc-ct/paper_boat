@@ -2,60 +2,40 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.paper.boat.dream">
-
     <!-- 允许应用程序改变网络状态 -->
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <!-- 允许应用程序改变WIFI连接状态 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <!-- 网络权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Normal Permissions 不需要运行时注册 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 允许应用程序改变WIFI连接状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Normal Permissions 不需要运行时注册 -->
     <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission
         android:name="android.permission.CHANGE_CONFIGURATION"
-        tools:ignore="ProtectedPermissions" />
-    <!-- 不是SDK需要的权限，是示例中的后台唤醒定位需要的权限 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- 需要运行时注册的权限 -->
+        tools:ignore="ProtectedPermissions" /> <!-- 不是SDK需要的权限，是示例中的后台唤醒定位需要的权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 需要运行时注册的权限 -->
     <!-- 用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- 用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- 写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 读取缓存数据 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- 更改设置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 读取缓存数据 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 更改设置 -->
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
-    <!-- 身份证识别 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 文件长传 -->
+        tools:ignore="ProtectedPermissions" /> <!-- 写设置 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 文件长传 -->
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission
         android:name="android.permission.WRITE_MEDIA_STORAGE"
-        tools:ignore="ProtectedPermissions" />
-    <!-- 获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <!-- 读取手机信息权限 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- 读取联系人权限，上传联系人需要用到此权限 -->
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <!--请求安装包-->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <!--阅读日志-->
+        tools:ignore="ProtectedPermissions" /> <!-- 获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 读取手机信息权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 读取联系人权限，上传联系人需要用到此权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 请求安装包 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 阅读日志 -->
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
-
 
     <application
         android:name="com.paper.boat.zrdx.InitApp"
@@ -69,16 +49,36 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="android:icon,android:theme,android:roundIcon">
-        <!--适配华为（huawei）刘海屏-->
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.apply.ApplicationDetailsActivity"></activity>
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.util.SqlActivity" /> <!-- 防止切屏后重新开始生命周期 -->
+        <!-- android:configChanges="orientation|keyboardHidden|navigation|screenSize" -->
+        <!-- 允许硬件加速 防止视频卡顿 -->
+        <!-- android:hardwareAccelerated="true" -->
+        <!-- 设定该活动的方向  允许横屏显示 -->
+        <!-- android:screenOrientation="portrait" -->
+        <activity
+            android:name="com.paper.boat.zrdx.ui.actvity.web.WebActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.living.LivingPaymentActivity" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.defray.PayDemoActivity" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.personal.AboutActivity" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.personal.SettingActivity" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.login.PasswordResetActivity" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.login.PasswordForgetActivity" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.login.RegisterActivity" />
+        <activity android:name="com.paper.boat.zrdx.MainActivity" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.login.LoginActivity" /> <!-- 适配华为（huawei）刘海屏 -->
         <meta-data
             android:name="android.notch_support"
-            android:value="true"/>
-        <!--适配小米（xiaomi）刘海屏-->
+            android:value="true" /> <!-- 适配小米（xiaomi）刘海屏 -->
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
+
         <activity
-            android:name="com.paper.boat.zrdx.MainActivity"
+            android:name="com.paper.boat.zrdx.ui.actvity.login.GuideFragmentActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -86,15 +86,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.paper.boat.zrdx.ui.actvity_utill.CrashActivity" />
-        <activity android:name="com.paper.boat.zrdx.ui.actvity_utill.SelectPositionActiviy" />
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.util.CrashActivity" />
+        <activity
+            android:name="com.paper.boat.zrdx.ui.actvity.util.SelectPositionActivity"
+            android:hardwareAccelerated="true" />
         <activity android:name="com.paper.boat.zrdx.util.image.ImageBrowseActivity" />
-        <!--高德地图-->
+        <activity android:name="com.paper.boat.zrdx.ui.actvity.defray.H5PayDemoActivity" /> <!-- 高德地图 -->
+        <!-- 高德地图 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="5e980ad0dfb159ea5f9b101eadcc5c31" />
-        <service android:name="com.amap.api.location.APSService" />
-        <!--android:authorities="com.paper.boat.zrdx"-->
+
+        <service android:name="com.amap.api.location.APSService" /> <!-- 适配Android 7.0文件意图 -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"
@@ -103,8 +106,13 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths_public" />
-        </provider>
-
+        </provider> <!-- 如果您项目中的所有页面都只需要以高或宽中的一个作为基准进行适配的话, 那就只需要填写高或宽中的一个设计图尺寸即可 -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="405" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="775" />
     </application>
 
 </manifest>

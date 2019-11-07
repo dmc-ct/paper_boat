@@ -14,16 +14,6 @@ import java.util.Map;
  */
 public class MyShared {
     private static final String FILE = "file_shared";
-    public static final String NAME = "name";
-    public static final String ID = "id";
-    public static final String IS_LOGIN = "is_login";
-    public static final String USER = "user";
-    //记住密码
-    public static final String PASSWORD = "password";
-    public static final String Token = "to_ken";
-    //安装标识
-    public static final int INSTALL_PERMISS_CODE = 100;
-    public static final String APK_FILE_PATH = "apk_file_path";
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
@@ -85,7 +75,7 @@ public class MyShared {
     /**
      * 移除某个key值已经对应的值
      */
-    public static void remove(String key) {
+    public void remove(String key) {
         SharedPreferences sp = mContext.getSharedPreferences( FILE,
                 Context.MODE_PRIVATE );
         SharedPreferences.Editor editor = sp.edit();
@@ -96,7 +86,7 @@ public class MyShared {
     /**
      * 清除所有数据
      */
-    public static void clearAll() {
+    public void clearAll() {
         SharedPreferences sp = mContext.getSharedPreferences( FILE,
                 Context.MODE_PRIVATE );
         SharedPreferences.Editor editor = sp.edit();
@@ -107,7 +97,7 @@ public class MyShared {
     /**
      * 查询某个key是否已经存在
      */
-    public static boolean contains(String key) {
+    public boolean contains(String key) {
         SharedPreferences sp = mContext.getSharedPreferences( FILE,
                 Context.MODE_PRIVATE );
         return sp.contains( key );

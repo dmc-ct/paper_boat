@@ -4,5 +4,5 @@ public interface XRefresh {
 
     void onRefresh();
 
-    void onLoadMore(boolean isSilence);
+    void onLoadMore();
 }

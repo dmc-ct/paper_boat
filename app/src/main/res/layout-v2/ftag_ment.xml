@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_gradient"
+        app:backButton="false"
+        app:lineVisible="false"
+        app:rightTitle="支付Demo"
+        app:rightColor="@color/white"
+        app:title="应用预览"
+        app:titleColor="@color/white" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <!--属性名          属性说明               属性值-->
+            <!--isAutoPlay      是否支持自动轮播     boolean类型，默认为true-->
+            <!--autoPlayTime    图片轮播事件间隔            int类型，默认5000ms-->
+            <!--pointNormal     指示器未选中时的状态    drawable类型，不指定的话使用默认状态点-->
+            <!--pointSelect     指示器选中时的状态     drawable类型，不指定的话使用默认状态点-->
+            <!--pointsVisible   是否显示指示器        boolean类型，默认为true-->
+            <!--pointsPosition  指示点位置       CENTER、LEFT、RIGHT，默认CENTER-->
+            <!--pointsContainerBackground       指示器条背景  color类型、drawable类型、mipmap类型等-->
+            <!--pointContainerPosition  指示器条位置      TOP、BOTTOM，默认BOTTOM-->
+            <!--pointContainerLeftRightPadding  指示点容器左右内间距     dimension类型，默认10.0dip-->
+            <!--pointTopBottomPadding   指示点上下内间距        dimension类型，默认6.0dip-->
+            <!--pointLeftRightPadding   指示点左右内间距        dimension类型，默认3.0dip-->
+            <!--tipTextColor    提示文字的颜色         reference类型-->
+            <!--tipTextSize     提示文字的大小         dimension类型，默认10.0dp-->
+            <!--point 点-->
+            <!--isClipChildrenMode 是否开启一屏显示多个模式 boolean类型，默认为false 默认不开启-->
+            <!--isClipChildrenModeLessThree 少于三张是否支持一屏多显模式 boolean类型，默认为false 默认不开启-->
+            <!--isHandLoop  是否支持手动无限循环切换图片  	boolean类型，默认为false-->
+            <!--isShowIndicatorOnlyOne  当只有一张图片的时候是否显示指示点-->
+            <!--isShowNumberIndicator 是显示编号指示器-->
+            <!--isShowTips 是否展示文字-->
+            <!-- pageChangeDuration   图片切换速度-->
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:isShowTips="false"
+                app:pageChangeDuration="800"
+                app:pointNormal="@drawable/shape_noraml"
+                app:pointSelect="@drawable/shape_selected"
+                app:pointsContainerBackground="@null"
+                app:pointsPosition="CENTER" />
+
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:AutoPlayTime="3000"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isClipChildrenModeLessThree="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:isShowTips="true"
+                app:tipTextSize="13sp"
+                app:pageChangeDuration="800"
+                app:pointNormal="@drawable/shape_noraml"
+                app:pointSelect="@drawable/shape_selected"
+                app:pointsContainerBackground="@drawable/shape_round_8dp"
+                app:pointsPosition="RIGHT" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/use_recycler"
+        android:layout_margin="@dimen/dp_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="4" />
+
+</LinearLayout>

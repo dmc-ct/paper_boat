@@ -15,7 +15,6 @@ import com.paper.boat.dream.R;
 import com.paper.boat.zrdx.InitApp;
 
 import static com.paper.boat.zrdx.Url.URL;
-import static com.paper.boat.zrdx.util.CommonUtil.getResources;
 
 /**
  * Created by Kevin on 2017/8/22.
@@ -98,7 +97,7 @@ public final class GlideHelper {
     /*圆角本地*/
     public static RoundedBitmapDrawable rectRoundBitmap(Bitmap bitmap) {
         //创建RoundedBitmapDrawable对象
-        RoundedBitmapDrawable roundImg = RoundedBitmapDrawableFactory.create( getResources(), bitmap );
+        RoundedBitmapDrawable roundImg = RoundedBitmapDrawableFactory.create( InitApp.getContext().getResources(), bitmap );
         //抗锯齿
         roundImg.setAntiAlias( true );
         //设置圆角半径

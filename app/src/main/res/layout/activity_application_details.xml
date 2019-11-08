@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.paper.boat.zrdx.ui.actvity.apply.ApplicationDetailsActivity">
+    <!--协调员布局-->
+
+    <!--应用栏布局-->
+    <!--  app:layout_scrollFlags=""
+1、scroll: 所有想滚动出屏幕的view都需要设置这个flag， 没有设置这个flag的view将被固定在屏幕顶部。例如，TabLayout 没有设置这个值，将会停留在屏幕顶部。
+2、enterAlways: 设置这个flag时，向下的滚动都会导致该view变为可见，启用快速“返回模式”。
+3、enterAlwaysCollapsed: 当你的视图已经设置minHeight属性又使用此标志时，你的视图只能已最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度。
+4、exitUntilCollapsed: 滚动退出屏幕，最后折叠在顶端。-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--折叠工具栏布局-->
+        <!-- 该视图将正常运行，没有折叠行为。 none -->
+        <!-- 视图将固定在适当的位置。 pin-->
+        <!-- 视图将以视差方式滚动。请参见layout_collapseParallaxMultiplier属性以更改乘数。 parallax-->
+        <com.paper.boat.zrdx.widget.XCollapsingToolbarLayout
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_220"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/bag"
+                android:textColor="@color/white"
+                app:layout_collapseMode="parallax" />
+
+            <!--垫标题视图-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+            <!--android:background="@android:color/transparent"-->
+            <com.hjq.bar.TitleBar
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                app:layout_collapseMode="pin"
+                app:leftIcon="@mipmap/back_three"
+                app:lineVisible="false"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="应用详情"
+                app:titleColor="@color/white" />
+
+        </com.paper.boat.zrdx.widget.XCollapsingToolbarLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/home_3"
+            android:gravity="center"
+            android:text="这是需要悬浮的布局"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

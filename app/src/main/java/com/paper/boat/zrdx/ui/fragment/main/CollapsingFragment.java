@@ -15,6 +15,7 @@ import com.flyco.roundview.RoundTextView;
 import com.hjq.bar.TitleBar;
 import com.paper.boat.dream.R;
 import com.paper.boat.zrdx.common.MyLazyFragment;
+import com.paper.boat.zrdx.ui.actvity.apply.ApplicationDetailsActivity;
 import com.paper.boat.zrdx.ui.actvity.util.SqlActivity;
 import com.paper.boat.zrdx.ui.actvity.web.WebActivity;
 import com.paper.boat.zrdx.util.File.IntentKey;
@@ -121,7 +122,7 @@ public class CollapsingFragment extends MyLazyFragment {
         return R.layout.activity_practice_weibo;
     }
 
-    @OnClick({R.id.leaveword, R.id.attention})
+    @OnClick({R.id.avatar, R.id.leaveword, R.id.attention})
     void OnClick(View view) {
         switch (view.getId()) {
             case R.id.leaveword:
@@ -129,6 +130,9 @@ public class CollapsingFragment extends MyLazyFragment {
                 break;
             case R.id.attention:
                 startActivity( SqlActivity.class ).go();
+                break;
+            case R.id.avatar:
+                startActivity( ApplicationDetailsActivity.class ).go();
                 break;
         }
     }

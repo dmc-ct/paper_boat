@@ -47,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <!--X折叠工具栏布局-->
                     <com.paper.boat.zrdx.widget.XCollapsingToolbarLayout
                         android:id="@+id/collapse"
                         android:layout_width="match_parent"

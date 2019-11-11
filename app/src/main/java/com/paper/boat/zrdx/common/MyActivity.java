@@ -18,7 +18,7 @@ import com.hjq.toast.ToastUtils;
 import com.paper.boat.dream.BuildConfig;
 import com.paper.boat.dream.R;
 import com.paper.boat.zrdx.helper.ActivityStackManager;
-import com.paper.boat.zrdx.util.File.MyShared;
+import com.paper.boat.zrdx.util.file.MyShared;
 import com.paper.boat.zrdx.view.dialog.ToastDialog;
 import com.paper.boat.zrdx.view.util.StatusManager;
 

@@ -8,7 +8,7 @@ import com.paper.boat.dream.R;
 import com.paper.boat.zrdx.MainActivity;
 import com.paper.boat.zrdx.common.MyLazyFragment;
 import com.paper.boat.zrdx.ui.actvity.login.LoginActivity;
-import com.paper.boat.zrdx.util.File.IntentKey;
+import com.paper.boat.zrdx.util.file.IntentKey;
 import com.paper.boat.zrdx.util.base.MyToast;
 
 import butterknife.BindView;

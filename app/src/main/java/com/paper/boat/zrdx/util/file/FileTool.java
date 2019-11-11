@@ -1,4 +1,4 @@
-package com.paper.boat.zrdx.util.File;
+package com.paper.boat.zrdx.util.file;
 
 import android.Manifest;
 import android.app.Activity;

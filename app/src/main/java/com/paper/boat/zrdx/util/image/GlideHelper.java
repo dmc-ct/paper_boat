@@ -1,7 +1,9 @@
 package com.paper.boat.zrdx.util.image;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -98,6 +100,18 @@ public final class GlideHelper {
     public static RoundedBitmapDrawable rectRoundBitmap(Bitmap bitmap) {
         //创建RoundedBitmapDrawable对象
         RoundedBitmapDrawable roundImg = RoundedBitmapDrawableFactory.create( InitApp.getContext().getResources(), bitmap );
+        //抗锯齿
+        roundImg.setAntiAlias( true );
+        //设置圆角半径
+        roundImg.setCornerRadius( 8 );
+        return roundImg;
+    }
+
+    /*圆角本地*/
+    public static RoundedBitmapDrawable rectRoundBitmap( Resources resource, int id) {
+        Bitmap image = BitmapFactory.decodeResource( resource, id );
+        //创建RoundedBitmapDrawable对象
+        RoundedBitmapDrawable roundImg = RoundedBitmapDrawableFactory.create( InitApp.getContext().getResources(), image );
         //抗锯齿
         roundImg.setAntiAlias( true );
         //设置圆角半径

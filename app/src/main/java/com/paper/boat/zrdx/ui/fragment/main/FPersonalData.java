@@ -18,7 +18,7 @@ import com.paper.boat.zrdx.common.MyLazyFragment;
 import com.paper.boat.zrdx.ui.actvity.personal.SettingActivity;
 import com.paper.boat.zrdx.ui.actvity.util.SelectPositionActivity;
 import com.paper.boat.zrdx.ui.adapter.GridImageAdapter;
-import com.paper.boat.zrdx.util.File.AlbumUtil;
+import com.paper.boat.zrdx.util.file.AlbumUtil;
 import com.paper.boat.zrdx.util.image.GlideHelper;
 import com.paper.boat.zrdx.util.image.ImageBrowseIntent;
 import com.paper.boat.zrdx.util.interfaces.Dialog;

@@ -3,34 +3,43 @@ package com.paper.boat.zrdx.ui.actvity.apply;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.TitleBar;
 import com.paper.boat.dream.R;
 import com.paper.boat.zrdx.common.MyActivity;
-import com.paper.boat.zrdx.util.base.MyToast;
+import com.paper.boat.zrdx.ui.fragment.apply.DetailsFragment;
+import com.paper.boat.zrdx.ui.fragment.main.TestFragment;
+import com.paper.boat.zrdx.ui.fragment.main.TowFragment;
+import com.paper.boat.zrdx.util.image.GlideHelper;
 import com.paper.boat.zrdx.widget.XCollapsingToolbarLayout;
-import com.scwang.smartrefresh.layout.util.SmartUtil;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
-public class ApplicationDetailsActivity extends MyActivity {
+public class ApplicationDetailsActivity extends MyActivity
+        implements XCollapsingToolbarLayout.OnScrimsListener, TabLayout.BaseOnTabSelectedListener {
     @BindView(R.id.recycler)
     RecyclerView mRecycler;
-    //    @BindView(R.id.scrollView)
-//    NestedScrollView scrollView;
     @BindView(R.id.title)
     TitleBar titleBar;
     @BindView(R.id.video_view)
@@ -44,8 +53,18 @@ public class ApplicationDetailsActivity extends MyActivity {
     @BindView(R.id.coordinator)
     CoordinatorLayout Coordinator;
 
-    private int mOffset = 0;
-    private int mScrollY = 0;
+    @BindView(R.id.table_layout)
+    TabLayout mTableLayout;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+
+    /*图片*/
+    @BindView(R.id.imageView)
+    ImageView imageView;
+    @BindView(R.id.imageView2)
+    ImageView imageView2;
+
+    private Map <ContentPage, View> mPageMap = new HashMap <>();
 
     @Override
     protected int getLayoutId() {
@@ -63,26 +82,7 @@ public class ApplicationDetailsActivity extends MyActivity {
         }
         ImmersionBar.setTitleBar( this, toolbar );
 
-        Coordinator.setOnScrollChangeListener( new View.OnScrollChangeListener() {
-            private int lastScrollY = 0;
-            private int h = SmartUtil.dp2px( 170 );
-            private int color = ContextCompat.getColor( getApplicationContext(), R.color.colorPrimary ) & 0x00ffffff;
-            /*滚动更改*/
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                 MyToast.printLog( lastScrollY + "123" );
-                if (lastScrollY < h) {
-                    scrollY = Math.min( h, scrollY );
-                    mScrollY = scrollY > h ? h : scrollY;
-                    //                    buttonBar.setAlpha(1f * mScrollY / h);
-                    titleBar.setBackgroundColor( ((255 * mScrollY / h) << 24) | color );
-                    mViewView.setTranslationY( mOffset - mScrollY );
-                }
-                lastScrollY = scrollY;
-            }
-        } );
-
-
+        mToolBar.setOnScrimsListener( this );
     }
 
     /*状态栏已启用*/
@@ -100,14 +100,94 @@ public class ApplicationDetailsActivity extends MyActivity {
     @Override
     protected void initData() {
 
-        mRecycler.setAdapter( adapter );
-        adapter.replaceData( Arrays.asList( getResources().getStringArray( R.array.mz ) ) );
+        mTableLayout.addOnTabSelectedListener( this );
+        /*图片加载*/
+        imageView.setImageDrawable( GlideHelper.rectRoundBitmap( getResources(), R.mipmap.bag ) );
+        imageView2.setImageDrawable( GlideHelper.rectRoundBitmap( getResources(), R.mipmap.image_weibo_home_2 ) );
+
+        // 用于ViewPager适配器
+        List <Fragment> fragments = new ArrayList <>();
+        //为适配器添加片段
+        fragments.add( new DetailsFragment() );
+        fragments.add( new TestFragment() );
+        fragments.add( TowFragment.newInstance() );
+        viewPager.setAdapter( new VpAdapter( getSupportFragmentManager(), fragments ) );
+        viewPager.setCurrentItem( 0, false );
+        mTableLayout.setupWithViewPager( viewPager );
     }
 
-    BaseQuickAdapter <String, BaseViewHolder> adapter = new BaseQuickAdapter <String, BaseViewHolder>( R.layout.item_menu ) {
-        @Override
-        protected void convert(BaseViewHolder helper, String item) {
-            helper.setText( R.id.tv_menu_name, item );
+    /**
+     * view pager adapter
+     */
+    private static class VpAdapter extends FragmentPagerAdapter {
+        private List <Fragment> data;
+
+        VpAdapter(FragmentManager fm, List <Fragment> data) {
+            super( fm );
+            this.data = data;
         }
-    };
+
+        @Override
+        public int getCount() {
+            return data == null ? 0 : data.size();
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return data.get( position );
+        }
+
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return ContentPage.getPageNames()[position];
+        }
+    }
+
+    /*选项卡上的选择*/
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+
+    }
+
+    /*在选项卡上未选中*/
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    /*在选项卡上重新选择*/
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+//    BaseQuickAdapter <String, BaseViewHolder> adapter = new BaseQuickAdapter <String, BaseViewHolder>( R.layout.item_menu ) {
+//        @Override
+//        protected void convert(BaseViewHolder helper, String item) {
+//            helper.setText( R.id.tv_menu_name, item );
+//        }
+//    };
+
+    /**
+     * CollapsingToolbarLayout 渐变回调
+     * <p>
+     * {@link XCollapsingToolbarLayout.OnScrimsListener}
+     */
+    @SuppressLint("NewApi")
+    @Override
+    public void onScrimsStateChange(XCollapsingToolbarLayout layout, boolean shown) {
+        post( () -> {
+            if (shown) {
+                titleBar.setBackground( getResources().getDrawable( R.drawable.shape_gradient ) );
+            } else {
+                titleBar.setBackground( getResources().getDrawable( R.color.transparent ) );
+            }
+        } );
+    }
 }

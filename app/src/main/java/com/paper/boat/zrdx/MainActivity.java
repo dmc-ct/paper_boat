@@ -18,6 +18,7 @@ import com.paper.boat.zrdx.helper.DoubleClickHelper;
 import com.paper.boat.zrdx.ui.fragment.main.CollapsingFragment;
 import com.paper.boat.zrdx.ui.fragment.main.DialogFragment;
 import com.paper.boat.zrdx.ui.fragment.main.FPersonalData;
+import com.paper.boat.zrdx.ui.fragment.main.TestFragment;
 import com.paper.boat.zrdx.ui.fragment.main.TowFragment;
 import com.paper.boat.zrdx.view.button.BottomNavigationViewEx;
 import com.paper.boat.zrdx.view.edit.KeyboardWatcher;
@@ -65,11 +66,14 @@ public class MainActivity extends MyActivity
                     case R.id.i_backup:
                         position = 1;
                         break;
-                    case R.id.i_favor:
+                    case R.id.i_empty:
                         position = 2;
                         break;
-                    case R.id.i_visibility:
+                    case R.id.i_favor:
                         position = 3;
+                        break;
+                    case R.id.i_visibility:
+                        position = 4;
                         break;
                 }
                 if (previousPosition != position) {
@@ -121,6 +125,7 @@ public class MainActivity extends MyActivity
         List <Fragment> fragments = new ArrayList <>();
         //为适配器添加片段
         fragments.add( CollapsingFragment.newInstance() );
+        fragments.add( new TestFragment() );
         fragments.add( TowFragment.newInstance() );
         fragments.add( DialogFragment.newInstance() );
         fragments.add( FPersonalData.newInstance() );

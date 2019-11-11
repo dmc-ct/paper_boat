@@ -1,4 +1,4 @@
-package com.paper.boat.zrdx.util.File;
+package com.paper.boat.zrdx.util.file;
 
 /**
  *    author : Android 轮子哥

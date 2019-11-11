@@ -22,7 +22,6 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
-import com.scwang.smartrefresh.layout.util.SmartUtil;
 
 import java.util.Arrays;
 
@@ -99,24 +98,24 @@ public class TestFragment extends MyLazyFragment
 
         } );
 
-        Coordinator.setOnScrollChangeListener( new View.OnScrollChangeListener() {
-            private int lastScrollY = 0;
-            private int h = SmartUtil.dp2px( 170 );
-            private int color = ContextCompat.getColor( getContext(), R.color.colorPrimary ) & 0x00ffffff;
-
-            /*滚动更改*/
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (lastScrollY < h) {
-                    scrollY = Math.min( h, scrollY );
-                    mScrollY = scrollY > h ? h : scrollY;
-//                    buttonBar.setAlpha(1f * mScrollY / h);
-                    title.setBackgroundColor( ((255 * mScrollY / h) << 24) | color );
-                    backdrop.setTranslationY( mOffset - mScrollY );
-                }
-                lastScrollY = scrollY;
-            }
-        } );
+//        Coordinator.setOnScrollChangeListener( new View.OnScrollChangeListener() {
+//            private int lastScrollY = 0;
+//            private int h = SmartUtil.dp2px( 170 );
+//            private int color = ContextCompat.getColor( getContext(), R.color.colorPrimary ) & 0x00ffffff;
+//
+//            /*滚动更改*/
+//            @Override
+//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                if (lastScrollY < h) {
+//                    scrollY = Math.min( h, scrollY );
+//                    mScrollY = scrollY > h ? h : scrollY;
+////                    buttonBar.setAlpha(1f * mScrollY / h);
+//                    title.setBackgroundColor( ((255 * mScrollY / h) << 24) | color );
+//                    backdrop.setTranslationY( mOffset - mScrollY );
+//                }
+//                lastScrollY = scrollY;
+//            }
+//        } );
         title.setBackgroundColor( 0 );
 
         recyclerView.setAdapter( adapter );

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--ftl_single_cancelable单选取消-->
+        <com.paper.boat.zrdx.view.layout.FlowTagLayout
+            android:id="@+id/flowlayout_normal_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ftl_single_cancelable="true" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/image_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:layout_marginLeft="@dimen/dp_10"
+            tools:ignore="RtlHardcoded" />
+
+        <com.paper.boat.zrdx.widget.text.SpannableFoldTextView
+            android:id="@+id/fold_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            app:showMaxLine="3"
+            app:showTipAfterExpand="true"
+            app:tipClickable="true"
+            app:tipColor="@color/colorPrimary" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

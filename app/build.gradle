@@ -115,7 +115,7 @@ dependencies {
     //Recycler适配
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     //文本对齐
-    implementation 'me.codeboy.android:align-text-view:2.3.2'
+//    implementation 'me.codeboy.android:align-text-view:2.3.2'
     //Room
     implementation 'androidx.room:room-rxjava2:2.2.1'
     implementation 'androidx.room:room-runtime:2.2.1'

@@ -1,4 +1,4 @@
-package com.paper.boat.zrdx.util.File;
+package com.paper.boat.zrdx.util.file;
 
 import android.app.Activity;
 import android.content.Context;
@@ -29,8 +29,8 @@ import java.text.DecimalFormat;
 
 import retrofit2.Response;
 
-import static com.paper.boat.zrdx.util.File.IntentKey.APK_FILE_PATH;
-import static com.paper.boat.zrdx.util.File.IntentKey.INSTALL_PERMISS_CODE;
+import static com.paper.boat.zrdx.util.file.IntentKey.APK_FILE_PATH;
+import static com.paper.boat.zrdx.util.file.IntentKey.INSTALL_PERMISS_CODE;
 
 
 public class UpdateApp {

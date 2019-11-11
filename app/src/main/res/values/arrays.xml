@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--   https://hm.baidu.com -->
+    <!--   https://api.shilongwangap.cn/jpg/200/h-j-c-3.png -->
 
     <!--广告库-->
     <string-array name="adBlockUrl">
@@ -11,6 +11,18 @@
         <item>tz.smfsjx.com</item>
         <item>vqzone.gtimg.com</item>
         <item>cbu01.alicdn.com</item>
+        <item>api.shilongwangap.cn</item>
+    </string-array>
+
+    <!--标签-->
+    <string-array name="tags_values">
+        <item>Android</item>
+        <item>Javascript</item>
+        <item>React Native</item>
+        <item>Kotlin</item>
+        <item>C++</item>
+        <item>C#</item>
+        <item>Object-C</item>
     </string-array>
 
     <!--民族-->

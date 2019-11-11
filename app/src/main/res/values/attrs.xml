@@ -69,4 +69,17 @@
         <attr name="sizeRatio" format="float" />
     </declare-styleable>
 
+    <!--可折叠文本-->
+    <declare-styleable name="FoldTextView">
+        <attr name="showMaxLine" format="integer" />
+        <attr name="tipGravity" format="integer" />
+        <attr name="tipColor" format="reference|color" />
+        <attr name="tipClickable" format="boolean" />
+        <attr name="foldText" format="string" />
+        <attr name="expandText" format="string" />
+        <attr name="showTipAfterExpand" format="boolean" />
+        <attr name="isSetParentClick" format="boolean"/>
+    </declare-styleable>
+
+    <attr format="dimension" name="xui_config_icon_drawable_padding"/>
 </resources>

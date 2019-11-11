@@ -13,8 +13,8 @@ import com.paper.boat.zrdx.common.MyLazyFragment;
 import com.paper.boat.zrdx.ui.fragment.guide.GuildAFragment;
 import com.paper.boat.zrdx.ui.fragment.guide.GuildBFragment;
 import com.paper.boat.zrdx.ui.fragment.guide.GuildCFragment;
-import com.paper.boat.zrdx.util.File.IntentKey;
-import com.paper.boat.zrdx.util.File.MyShared;
+import com.paper.boat.zrdx.util.file.IntentKey;
+import com.paper.boat.zrdx.util.file.MyShared;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,6 +15,30 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
+    <!--match_parent-->
+    <style name="MatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="TabLayoutStyle" parent="Base.Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/TabText</item>
+        <item name="tabSelectedTextColor">?attr/colorAccent</item>
+        <item name="tabTextColor">@color/xui_config_color_gray_6</item>
+    </style>
+
+    <!--TabLayout-->
+    <style name="TabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/xui_config_color_gray_6</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+
     <!--白色主题样式，，注意每一项都不能少-->
     <style name="picture.white.style" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -421,5 +445,41 @@
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--文本对齐-->
+    <declare-styleable name="AlignTextView"><attr format="enum" name="align"><enum name="left" value="0"/><enum name="center" value="1"/><enum name="right" value="2"/></attr></declare-styleable>
+    <declare-styleable name="CBAlignTextView"><attr format="boolean" name="punctuationConvert"/></declare-styleable>
+
+    <!--流式标签布局-->
+    <declare-styleable name="FlowTagLayout">
+        <!--选择模式，默认不可选-->
+        <attr format="enum" name="ftl_check_mode">
+            <!--不可选择-->
+            <enum name="none" value="0"/>
+            <!--单选-->
+            <enum name="single" value="1"/>
+            <!--多选-->
+            <enum name="multi" value="2"/>
+            <!--只是展示-->
+            <enum name="display" value="3"/>
+        </attr>
+        <!-- 流标签的可选项  -->
+        <attr format="reference" name="ftl_entries"/>
+        <!-- 流标签默认的已选项索引  -->
+        <attr format="reference" name="ftl_selecteds"/>
+        <!-- 单选模式下选中是否可取消，默认是false  -->
+        <attr format="boolean" name="ftl_single_cancelable"/>
+    </declare-styleable>
+
+    <style name="TextStyle.Explain">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_no</item>
+    </style>
+    <style name="TextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 </resources>

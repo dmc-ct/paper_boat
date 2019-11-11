@@ -89,5 +89,8 @@
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorBackgroundDark">#f2f2f2</color>
     <color name="colorDivision">#33aaaaaa</color>
+    <color name="xui_config_color_gray_6">#99A0AA</color>
 
+    <!--#299EE3-->
+    <color name="xui_config_color_main_theme">#299EE3</color>
 </resources>

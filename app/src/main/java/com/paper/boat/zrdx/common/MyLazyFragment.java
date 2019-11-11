@@ -17,7 +17,7 @@ import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.toast.ToastUtils;
 import com.paper.boat.dream.BuildConfig;
-import com.paper.boat.zrdx.util.File.MyShared;
+import com.paper.boat.zrdx.util.file.MyShared;
 import com.paper.boat.zrdx.view.util.StatusManager;
 
 import butterknife.ButterKnife;

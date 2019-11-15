@@ -109,9 +109,23 @@ public class TowFragment extends MyLazyFragment {
         map.put( "text", "智慧门牌" );
         map.put( "packageName", "com.dream.zrdx.dream" );
         map.put( "className", "com.dream.zrdx.dream.ui.activity_v2.GuidanceActivity" );
+        /*
+        * com.eg.android.AlipayGphone/.AlipayLogin
+        */
         Map <String, Object> map1 = new HashMap <>();
         map1.put( "ico", R.mipmap.app_wang_ge );
         map1.put( "text", "智慧网格" );
+
+        /*
+        *
+        *  starting Intent {
+        * act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER]
+        * cmp=com.eg.android.AlipayGphone/com.alipay.mobile.nebulacore.ui.H5Activity } from Proces
+sRecord{455954d 32241:com.paper.boat.dream/u0a670} (pid=32241, uid=10670) not exported from uid 1014
+        * */
+
+//        map1.put( "packageName", "com.eg.android.AlipayGphone" );
+//        map1.put( "className", "com.eg.android.AlipayGphone.AlipayLogin" );
         map1.put( "packageName", "com.dream.zrdx.wang_ge" );
         map1.put( "className", "com.dream.zrdx.wang_ge.ui.activity.GuidanceActivity" );
         List <Map> list = new ArrayList <>();
@@ -121,6 +135,8 @@ public class TowFragment extends MyLazyFragment {
         // 禁用动画效果
         use_recycler.setItemAnimator( null );
 
+        /*  ResumedActivity: ActivityRecord{4ac9a89 u0 com.eg.android.AlipayGphone/com.alipay.mobile.nebulacore.ui.H5Activity t1138}
+         */
         postDelayed( () -> {
             // 执行列表动画
             use_recycler.setLayoutAnimation( AnimationUtils.loadLayoutAnimation( getActivity(), R.anim.layout_animation_fall_down ) );

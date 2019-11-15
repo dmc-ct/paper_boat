@@ -154,11 +154,9 @@ public class TestFragment extends MyLazyFragment
         if (shown) {
             mAddressView.setTextColor( ContextCompat.getColor( getAttachActivity(), R.color.black ) );
             mSearchView.setBackgroundResource( R.drawable.bg_home_search_bar_gray );
-//            TitleColor( true );
         } else {
             mAddressView.setTextColor( ContextCompat.getColor( getAttachActivity(), R.color.white ) );
             mSearchView.setBackgroundResource( R.drawable.bg_home_search_bar_transparent );
-//            TitleColor( false );
         }
     }
 }

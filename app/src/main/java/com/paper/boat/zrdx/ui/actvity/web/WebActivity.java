@@ -15,7 +15,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import butterknife.BindView;
 
-    public class WebActivity extends MyActivity {
+public class WebActivity extends MyActivity {
         @BindView(R.id.webView)
         WebView webView;
         @BindView(R.id.pb_web_progress)

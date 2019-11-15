@@ -10,6 +10,7 @@ import com.paper.boat.dream.R;
 /**
  * @author xuexiang
  * @date 2017/11/21 上午10:44
+ * 流式布局
  */
 public class FlowTagAdapter extends BaseTagAdapter<String, TextView> {
 

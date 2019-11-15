@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.flyco.roundview.RoundTextView;
 import com.hjq.bar.TitleBar;
 import com.paper.boat.dream.R;
@@ -27,6 +30,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.scwang.smartrefresh.layout.util.SmartUtil;
+
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,6 +52,9 @@ public class CollapsingFragment extends MyLazyFragment {
     RoundTextView leaveWord;
     @BindView(R.id.attention)
     RoundTextView attention;
+
+    @BindView(R.id.recycler)
+    RecyclerView recyclerView;
 
     private int mOffset = 0;
     private int mScrollY = 0;
@@ -114,8 +122,16 @@ public class CollapsingFragment extends MyLazyFragment {
 
     @Override
     protected void initData() {
-
+        recyclerView.setAdapter( adapter );
+        adapter.replaceData( Arrays.asList( getResources().getStringArray( R.array.tags_values ) ) );
     }
+
+    BaseQuickAdapter <String, BaseViewHolder> adapter = new BaseQuickAdapter <String, BaseViewHolder>( R.layout.list_home ) {
+        @Override
+        protected void convert(BaseViewHolder helper, String item) {
+
+        }
+    };
 
     @Override
     protected int getLayoutId() {
@@ -146,22 +162,22 @@ public class CollapsingFragment extends MyLazyFragment {
         super.onResume();
     }
 
-    /*
-         * GuideView.Builder
-         .newInstance(this)      // 必须调用
-         .setTargetView(view)    // 必须调用，设置需要Guide的View
-         .setCustomTipsView(iv)  // 必须调用，设置GuideView，可以使任意View的实例，比如ImageView 或者TextView
-         .setDirction(GuideView.Direction.LEFT_BOTTOM)   // 设置GuideView 相对于TargetView的位置，有八种，不设置则默认在屏幕左上角,其余的可以显示在右上，右下等等
-         .setShape(GuideView.MyShape.RECTANGULAR)   // 设置显示形状，支持圆形，椭圆，矩形三种样式，矩形可以是圆角矩形，
-         .setBackGround(getResources().getColor(R.color.shadow)) // 设置背景颜色，默认透明
-         .setOnclickExit(null)   // 设置点击消失，可以传入一个Callback，执行被点击后的操作
-         .setRadius(32)          // 设置圆形或矩形透明区域半径，默认是targetView的显示矩形的半径，如果是矩形，这里是设置矩形圆角大小
-         .setCenter(300, 300)    // 设置圆心，默认是targetView的中心
-         .setOffset(200, 60)     // 设置偏移，一般用于微调GuideView的位置
-         .showOnce()             // 设置首次显示，设置后，显示一次后，不再显示
-         .build()                // 必须调用，Buider模式，返回GuideView实例
-         .show();                // 必须调用，显示GuideView
-          */
+    /**
+     * GuideView.Builder
+     * .newInstance(this)      // 必须调用
+     * .setTargetView(view)    // 必须调用，设置需要Guide的View
+     * .setCustomTipsView(iv)  // 必须调用，设置GuideView，可以使任意View的实例，比如ImageView 或者TextView
+     * .setDirction(GuideView.Direction.LEFT_BOTTOM)   // 设置GuideView 相对于TargetView的位置，有八种，不设置则默认在屏幕左上角,其余的可以显示在右上，右下等等
+     * .setShape(GuideView.MyShape.RECTANGULAR)   // 设置显示形状，支持圆形，椭圆，矩形三种样式，矩形可以是圆角矩形，
+     * .setBackGround(getResources().getColor(R.color.shadow)) // 设置背景颜色，默认透明
+     * .setOnclickExit(null)   // 设置点击消失，可以传入一个Callback，执行被点击后的操作
+     * .setRadius(32)          // 设置圆形或矩形透明区域半径，默认是targetView的显示矩形的半径，如果是矩形，这里是设置矩形圆角大小
+     * .setCenter(300, 300)    // 设置圆心，默认是targetView的中心
+     * .setOffset(200, 60)     // 设置偏移，一般用于微调GuideView的位置
+     * .showOnce()             // 设置首次显示，设置后，显示一次后，不再显示
+     * .build()                // 必须调用，Buider模式，返回GuideView实例
+     * .show();                // 必须调用，显示GuideView
+     */
     private void setGuideView() {
 
         // 使用图片

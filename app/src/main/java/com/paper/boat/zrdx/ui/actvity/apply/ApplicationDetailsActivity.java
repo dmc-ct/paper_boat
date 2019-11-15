@@ -24,8 +24,6 @@ import com.hjq.bar.TitleBar;
 import com.paper.boat.dream.R;
 import com.paper.boat.zrdx.common.MyActivity;
 import com.paper.boat.zrdx.ui.fragment.apply.DetailsFragment;
-import com.paper.boat.zrdx.ui.fragment.main.TestFragment;
-import com.paper.boat.zrdx.ui.fragment.main.TowFragment;
 import com.paper.boat.zrdx.util.image.GlideHelper;
 import com.paper.boat.zrdx.widget.XCollapsingToolbarLayout;
 
@@ -109,8 +107,8 @@ public class ApplicationDetailsActivity extends MyActivity
         List <Fragment> fragments = new ArrayList <>();
         //为适配器添加片段
         fragments.add( new DetailsFragment() );
-        fragments.add( new TestFragment() );
-        fragments.add( TowFragment.newInstance() );
+        fragments.add( new DetailsFragment() );
+        fragments.add( new DetailsFragment() );
         viewPager.setAdapter( new VpAdapter( getSupportFragmentManager(), fragments ) );
         viewPager.setCurrentItem( 0, false );
         mTableLayout.setupWithViewPager( viewPager );

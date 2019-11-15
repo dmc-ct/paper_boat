@@ -41,20 +41,4 @@ public interface BlogService {
             @Header("Authorization") String string,
             @Part MultipartBody.Part file);
 
-    @POST("talipay.ebpp.bill.get")
-    Call <Result <AppUpdate>> get(
-            @Query("app_id") String app_id
-            ,@Query("method") String method
-            ,@Query("charset") String charset
-            ,@Query("sign_type") String sign_type
-            ,@Query("sign") String sign
-            ,@Query("timestamp") String timestamp
-            ,@Query("version") String version
-            ,@Query("auth_token") String auth_token);
-
-    @POST("appToAppAuth.htm")
-    Call <Result <AppUpdate>> appToAppAuth(
-            @Query("app_id") String app_id
-            , @Query("redirect_uri") String redirect_uri);
-
 }

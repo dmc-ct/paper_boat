@@ -61,7 +61,6 @@
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
-        <activity android:name="com.paper.boat.zrdx.ui.actvity.living.LivingPaymentActivity" />
         <activity android:name="com.paper.boat.zrdx.ui.actvity.defray.PayDemoActivity" />
         <activity android:name="com.paper.boat.zrdx.ui.actvity.personal.AboutActivity" />
         <activity android:name="com.paper.boat.zrdx.ui.actvity.personal.SettingActivity" />

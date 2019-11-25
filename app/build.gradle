@@ -56,6 +56,7 @@ android {
             debuggable true
             minifyEnabled false
             zipAlignEnabled false
+            project.gradle.startParameter.excludedTaskNames.add('lint')  // 屏蔽lint耗时检查
         }
     }
     //添加支持Java8
@@ -65,6 +66,18 @@ android {
     }
     dataBinding {
         enabled true
+    }
+    //https://www.jianshu.com/p/8563e5131f7a
+    tasks.whenTaskAdded{ task->
+        if(task.name.equals("lint")) {
+            task.enabled=false
+        }
+    }
+    //https://github.com/dmc-ct/paper_boat  git地址
+    //表示开启Gradle的增量编译,增加编译的内存资源到4G
+    dexOptions{
+        // incremental true
+        javaMaxHeapSize "4g"
     }
 }
 
@@ -100,8 +113,8 @@ dependencies {
     //    implementation "org.greenrobot:eventbus:3.1.1"
     //    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
     // navigation(底部导航)
-    implementation 'androidx.navigation:navigation-fragment:2.2.0-rc01'
-    implementation 'androidx.navigation:navigation-ui:2.2.0-rc01'
+    implementation 'androidx.navigation:navigation-fragment:2.2.0-rc02'
+    implementation 'androidx.navigation:navigation-ui:2.2.0-rc02'
     //MPAndroidChart（开源图表框架）
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     //Glide(图片加载库)
